@@ -1,0 +1,40 @@
+<apex:page showHeader="true" sidebar="true" controller="EinsteinVisionDemoAdminController" tabStyle="Idea">
+	<apex:sectionHeader title="Einstein Vision Demo Admin Page" />
+	<apex:form>
+		<apex:pageMessages />
+		<apex:pageBlock>
+			<apex:pageBlockSection title="Handle Datasets" columns="2">
+				<apex:pageBlockSectionItem>
+					<apex:outputLabel value="Dataset URL" />
+					<apex:inputText value="{!datasetUrl}" style="width:300px"/>
+				</apex:pageBlockSectionItem>
+				<apex:commandButton value="Create Model (Async)" action="{!createModelAsync}"></apex:commandButton>
+
+				<apex:pageBlockSectionItem></apex:pageBlockSectionItem>
+				<apex:commandButton value="Get All Datasets & Models" action="{!getDatasetsAndModels}"></apex:commandButton>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="Handle Model" columns="2">
+				<apex:pageBlockSectionItem>
+					<apex:outputLabel value="Dataset ID" />
+					<apex:inputText value="{!datasetId}" style="width:300px"/>
+				</apex:pageBlockSectionItem>
+
+				<apex:commandButton value="Train Model" action="{!trainModel}" ></apex:commandButton>
+
+				<apex:pageBlockSectionItem></apex:pageBlockSectionItem>
+				<apex:commandButton value="Delete Dataset" action="{!deleteDataset}" onclick="return confirm('Are you sure to delete the dataset?');"></apex:commandButton>
+				
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="API Usage" columns="2">
+				<apex:commandButton value="API Usage" action="{!getApiUsage}"/>
+			</apex:pageBlockSection>
+
+			<apex:pageBlockSection title="Console">
+				<pre>{!debug}</pre>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+
+	</apex:form>
+</apex:page>
